@@ -1,0 +1,12 @@
+---
+- name: Setup server configuration for Rails 4 app
+  hosts: all
+  sudo: true
+  vars_files:
+    - vars/defaults.yml
+  roles:
+    - ruby
+    - deploy
+    - nginx
+    - node
+    - postgres

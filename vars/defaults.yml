@@ -1,0 +1,14 @@
+## webapp
+
+webserver_name: staging.face.gymmer.ru
+app_name: gymer-face
+env: staging
+deploy_user: gymer_deploy
+deploy_directory: /www/{{app_name}}_{{env}}
+
+## ruby from sources
+rubyTmpDir: /usr/local/src
+rubyUrl: https://cache.ruby-lang.org/pub/ruby/2.3/ruby-2.3.0.tar.gz
+rubyCompressedFile: ruby-2.3.0.tar.gz
+rubyName: ruby-2.3.0
+tmpRubyPath: "{{rubyTmpDir}}/{{rubyName}}"
