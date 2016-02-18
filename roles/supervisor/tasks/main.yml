@@ -1,0 +1,9 @@
+- name: Install Supervisor
+  apt: pkg=supervisor state=latest
+
+- name: Supervisor directory is present
+  file: state=directory path=/etc/supervisor/conf.d
+
+- include: go-app.yml
+  tags:
+    - go-app

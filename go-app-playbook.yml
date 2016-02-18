@@ -1,0 +1,9 @@
+---
+- name: Setup Golang API service configuration
+  hosts: all
+  sudo: true
+  vars_files:
+    - vars/go-app.yml
+  roles:
+    # - { role: nginx, tags: ['go'] }
+    - { role: supervisor, tags: ['go'] }
