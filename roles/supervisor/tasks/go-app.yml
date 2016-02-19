@@ -4,11 +4,18 @@
 - name: Deploy directory is present
   file: state=directory path={{deploy_directory}}
 
-- name: Deploy go app
-  copy: src={{binary_local_path}}/{{app_name}} dest={{deploy_directory}}/{{app_name}} owner={{deploy_user}} group={{deploy_user}} mode="u+x,g+x,o+x"
+- name: Rm old binary
+  file: state=absent path={{deploy_directory}}/{{app_name}}
+
+# - name: Build app binary for Ubuntu
+#   local_action: command GOOS=linux GOARCH=amd64 go build {{binary_local_path}}/main.go
+#   sudo: no
 
 - name: Copy go app configs
   copy: src={{binary_local_path}}/conf dest={{deploy_directory}} owner={{deploy_user}} group={{deploy_user}}
 
-- name: Start go app
-  supervisorctl: name={{app_name}} state=started config=/etc/supervisor/conf.d/{{app_name}}.conf
+- name: Deploy go app
+  copy: src={{binary_local_path}}/{{app_name}} dest={{deploy_directory}}/{{app_name}} owner={{deploy_user}} group={{deploy_user}} mode="u+x,g+x,o+x"
+  notify:
+    - supervisor update
+    - supervisor restart

@@ -3,5 +3,5 @@ user = gymer_deploy
 command = {{deploy_directory}}/{{app_name}} -env {{env}} -port {{port}}
 autostart   = true
 autorestart = true
-stderr_logfile = /var/log/long.err.log
-stdout_logfile = /var/log/long.out.log
+stderr_logfile = /var/log/{{app_name}}.err.log
+stdout_logfile = /var/log/{{app_name}}.out.log
