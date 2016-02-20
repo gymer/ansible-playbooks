@@ -6,6 +6,13 @@ server {
     access_log /var/log/nginx/{{webserver_name}}.access.log;
     error_log /var/log/nginx/{{webserver_name}}.error.log;
 
+    location /v1/ws/ {
+        proxy_pass http://127.0.0.1:{{port}};
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
+    }
+
     location / {
         try_files /_not_exists_ @backend;
     }
