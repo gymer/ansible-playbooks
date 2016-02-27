@@ -5,5 +5,5 @@
   file: state=directory path=/etc/supervisor/conf.d
 
 - include: go-app.yml
-  tags:
-    - go-app
+  tags: [go-app]
+  

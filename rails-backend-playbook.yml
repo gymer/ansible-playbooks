@@ -6,7 +6,7 @@
     - vars/defaults.yml
   roles:
     - ruby
-    - deploy
+    - { role: deploy, tags: ["rails"] }
     - nginx
     - node
     - postgres

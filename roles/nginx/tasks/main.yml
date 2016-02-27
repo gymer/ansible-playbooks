@@ -11,8 +11,7 @@
   command: rm -rf /etc/nginx/sites-enabled/{{app_name}}
 
 - include: go-app.yml
-  tags:
-    - go-app
+  tags: [go-app]
 
 - name: Enable the app
   command: ln -s /etc/nginx/sites-available/{{app_name}} /etc/nginx/sites-enabled/{{app_name}}
